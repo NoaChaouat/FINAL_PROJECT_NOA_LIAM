@@ -13,7 +13,7 @@ public class Main {
         run();
         s.close();
     }
-    hello
+
     private static final String[] MENU = {
             "Exit program",
             "Add lecturer",
