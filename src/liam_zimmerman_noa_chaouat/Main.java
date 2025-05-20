@@ -47,6 +47,7 @@ public class Main {
                 case 10 -> showCommittees();
                 case 11 -> AddLecturerToDepartment();
 
+
             }
         } while (userChosen != 0);
     }
@@ -70,28 +71,48 @@ public class Main {
 
     private static void addLecturer() {
         s.nextLine();
-        System.out.println("Enter Lecturer Name");
-        String name = s.nextLine();
-        System.out.println("Enter ID");
-        String id = s.nextLine();
-        System.out.println("Enter Degree - First / Second / Dr / Professor");
-        String degree = addDegree();
-        System.out.println("Enter Field Of Study");
-        String fieldOfStudy = s.nextLine();
-        System.out.println("Enter Salary");
-        double salary = s.nextDouble();
+        boolean valid = false;
+        while (!valid) {
+            try {
+                System.out.println("Enter Lecturer Name");
+                String name = s.nextLine();
+                System.out.println("Enter ID");
+                String id = s.nextLine();
+                System.out.println("Enter Degree - First / Second / Dr / Professor");
+                String degree = addDegree();
+                System.out.println("Enter Field Of Study");
+                String fieldOfStudy = s.nextLine();
+                System.out.println("Enter Salary");
+                double salary = s.nextDouble();
+
+                college.addLecturer(name, id, degree, fieldOfStudy, salary);
+
+
+            }
+            catch (ExceptionCollege e) {
+                System.out.println(e.getMessage());
+
+
+            }
+            catch (ExceptionUserMessage e){
+                System.out.println(e.getMessage());
+            }
+            catch (ExceptionNameTaken e){
+                System.out.println(e.getMessage());
+            }
+        }
         s.nextLine();
 
 
-        UserMessage res;
-        do {
-            res = college.addLecturer(name, id, degree, fieldOfStudy, salary);
-            if (res == UserMessage.ADD_LECTURER_FAILED) {
-                System.out.println(res);
-                name = s.nextLine();
-            }
-        } while (res == UserMessage.ADD_LECTURER_FAILED);
-        System.out.println(res);
+//        UserMessage res;
+//        do {
+//            res = college.addLecturer(name, id, degree, fieldOfStudy, salary);
+//            if (res == UserMessage.ADD_LECTURER_FAILED) {
+//                System.out.println(res);
+//                name = s.nextLine();
+//            }
+//        } while (res == UserMessage.ADD_LECTURER_FAILED);
+//        System.out.println(res);
     }
 
     private static void AddLecturerToDepartment() {

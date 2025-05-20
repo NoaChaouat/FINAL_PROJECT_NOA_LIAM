@@ -10,14 +10,14 @@ public class college_manager {
         private int numOfDepartments = 0;
 
     // ADDING FUNCTIONS:
-    public UserMessage addLecturer(String name, String id, String degree, String fieldOfStudy,double salary) {
+    public void addLecturer(String name, String id, String degree, String fieldOfStudy,double salary) throws ExceptionUserMessage {
 
         if(Util.isExist(lecturersArray,numOfLecturers,name)){
-            return UserMessage.ADD_LECTURER_FAILED;
+            throw new ExceptionNameTaken("Lecturer");
         }
 
         if(salary<=0){
-            return UserMessage.SALARY_CANT_BE_NEGATIVE;
+            throw new ExceptionCollege("Salary cant be negative");
         }
 
         if (lecturersArray.length == numOfLecturers){
@@ -27,9 +27,6 @@ public class college_manager {
         Lecturer lecturer = new Lecturer(name, id, degree, fieldOfStudy,salary);
 
         lecturersArray[numOfLecturers++] = lecturer;
-
-        return UserMessage.ADD_LECTURER_SUCCESS;
-
     }
 
     public UserMessage addCommittee(String committeeName, String chairMan) {
