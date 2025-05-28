@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Lecturer {
     private final String lecturerName;
+
     private final String id;
     public Degree degree;
     public enum Degree{
@@ -73,6 +74,14 @@ public class Lecturer {
 
     public void setDepartmentOfLecturer(Department departmentOfLecturer) {
         this.departmentOfLecturer = departmentOfLecturer;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getFieldOfStudy() {
+        return fieldOfStudy;
     }
 
     //  OTHER:

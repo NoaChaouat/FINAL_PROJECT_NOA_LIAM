@@ -2,7 +2,6 @@ package liam_zimmerman_noa_chaouat;
 
 
 import static liam_zimmerman_noa_chaouat.UserMessage.*;
-import static liam_zimmerman_noa_chaouat.UserMessage.SALARY_CANT_BE_NEGATIVE;
 
 public class college_manager {
         private Lecturer[] lecturersArray = new Lecturer[0];
@@ -15,17 +14,28 @@ public class college_manager {
 
 
     // ADDING FUNCTIONS:
-
-
     public void addLecturer(String name, String id, String degree, String fieldOfStudy,double salary) throws ExceptionUserMessage {
+        Lecturer lecturer = addBasicLecturer(name, id, degree, fieldOfStudy, salary);
+        lecturersArray[numOfLecturers++] = lecturer;
+    }
+
+    public void addLecturer(String name, String id, String degree, String fieldOfStudy,double salary,String[] articles) throws ExceptionUserMessage{
+        Lecturer lecturer = addBasicLecturer(name, id, degree, fieldOfStudy, salary);
+        Doctor doctor = new Doctor(lecturer, articles);  // בונה Doctor על בסיס Lecturer קיים
+        lecturersArray[numOfLecturers++] = doctor;
+    }
+    public void addLecturer(String name, String id, String degree, String fieldOfStudy,double salary,String[] articles,String GRANTOR_PROFESSORA) throws ExceptionUserMessage{
+        Lecturer lecturer = addBasicLecturer(name, id, degree, fieldOfStudy, salary);
+        Doctor doctor = new Doctor(lecturer, articles);  // בונה Doctor על בסיס Lecturer קיים
+        Professor professor = new Professor(doctor,GRANTOR_PROFESSORA);  // בונה Professor על בסיס Doctor
+        lecturersArray[numOfLecturers++] = professor;
+    }
+    public Lecturer addBasicLecturer(String name, String id, String degree, String fieldOfStudy,double salary) throws ExceptionUserMessage {
 
         if(Util.isExist(lecturersArray,numOfLecturers,name)){
             throw new ExceptionNameTaken(ADD_LECTURER_FAILED);
         }
-        if(!Util.isValidDegree(degree)){
-            throw new ExceptionsNotExist(DEGREE_ISNT_VALID);
 
-        }
         if(salary<=0){
             throw new ExceptionCollege(SALARY_CANT_BE_NEGATIVE);
         }
@@ -38,7 +48,7 @@ public class college_manager {
 
         Lecturer lecturer = new Lecturer(name, id, degree, fieldOfStudy,salary);
 
-        lecturersArray[numOfLecturers++] = lecturer;
+        return lecturer;
     }
 
     public UserMessage addCommittee(String committeeName, String chairMan) {

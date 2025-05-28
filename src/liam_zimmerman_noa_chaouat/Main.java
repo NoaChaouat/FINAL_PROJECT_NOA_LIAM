@@ -64,25 +64,52 @@ public class Main {
         String name = s.nextLine();
         System.out.println("Enter ID");
         String id = s.nextLine();
-        System.out.println("Enter Degree - First / Second / Dr / Professor");
-        String degree = s.nextLine().toUpperCase();
+        String degree;
+
+        do {
+            System.out.println("Enter Degree - First / Second / Dr / Professor");
+            degree = s.nextLine().toUpperCase();
+        } while (!Util.isValidDegree(degree));
 
         System.out.println("Enter Field Of Study");
         String fieldOfStudy = s.nextLine();
         System.out.println("Enter Salary");
         double salary = s.nextDouble();
         s.nextLine();
+
+
+// איסוף נתונים נוספים במקרה וזה דוקטור או פרופסור
+        String[] articles = null;
+        String grantorProfessora = null;
+        if (degree.equals("DR") || degree.equals("PROFESSOR")){
+            System.out.println("Enter number of publications:");
+            int numOfArticles = s.nextInt();
+            s.nextLine();
+             articles = new String[numOfArticles];
+            for (int i = 0; i < numOfArticles; i++) {
+                System.out.println("Enter article" + (i + 1));
+                articles[i] = s.nextLine();
+            }
+            if (degree.equals("PROFESSOR")){
+                System.out.println("Enter institution that awarded the professorship");
+                grantorProfessora = s.nextLine();
+            }
+
+        }
+
         while (!valid) {
             try {
-                college.addLecturer(name, id, degree, fieldOfStudy, salary);
+                if (degree.equals("PROFESSOR")) {
+                    college.addLecturer(name, id, degree, fieldOfStudy, salary, articles, grantorProfessora);
+                } else if (degree.equals("DR")) {
+                    college.addLecturer(name, id, degree, fieldOfStudy, salary, articles);
+                } else {
+                    college.addLecturer(name, id, degree, fieldOfStudy, salary);
+                }
                 valid = true;
             } catch (ExceptionNameTaken e) {
                 System.out.println(e.getMessage());
                 name = s.nextLine();
-
-            } catch (ExceptionsNotExist e) {
-                    System.out.println(e.getMessage());
-                    degree = s.nextLine().toUpperCase();
 
             } catch (ExceptionUserMessage e) {
                 System.out.println(e.getMessage());
