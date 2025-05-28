@@ -57,62 +57,43 @@ public class Main {
         String collegeName = s.nextLine();
     }
 
-    //    ADDING FUNCTIONS:
-    private static String addDegree() {
-        String degree = s.nextLine().toUpperCase();
-
-        while (!Util.isValidDegree(degree)){
-            System.out.println(UserMessage.DEGREE_ISNT_VALID);
-            System.out.println("Enter Degree - First / Second / Dr / Professor");
-            degree = s.nextLine().toUpperCase();
-        }
-        return degree;
-    }
-
     private static void addLecturer() {
         s.nextLine();
         boolean valid = false;
+        System.out.println("Enter Lecturer Name");
+        String name = s.nextLine();
+        System.out.println("Enter ID");
+        String id = s.nextLine();
+        System.out.println("Enter Degree - First / Second / Dr / Professor");
+        String degree = s.nextLine().toUpperCase();
+
+        System.out.println("Enter Field Of Study");
+        String fieldOfStudy = s.nextLine();
+        System.out.println("Enter Salary");
+        double salary = s.nextDouble();
+        s.nextLine();
         while (!valid) {
             try {
-                System.out.println("Enter Lecturer Name");
-                String name = s.nextLine();
-                System.out.println("Enter ID");
-                String id = s.nextLine();
-                System.out.println("Enter Degree - First / Second / Dr / Professor");
-                String degree = addDegree();
-                System.out.println("Enter Field Of Study");
-                String fieldOfStudy = s.nextLine();
-                System.out.println("Enter Salary");
-                double salary = s.nextDouble();
-
                 college.addLecturer(name, id, degree, fieldOfStudy, salary);
-
-
-            }
-            catch (ExceptionCollege e) {
+                valid = true;
+            } catch (ExceptionNameTaken e) {
                 System.out.println(e.getMessage());
+                name = s.nextLine();
 
+            } catch (ExceptionsNotExist e) {
+                    System.out.println(e.getMessage());
+                    degree = s.nextLine().toUpperCase();
 
-            }
-            catch (ExceptionUserMessage e){
+            } catch (ExceptionUserMessage e) {
                 System.out.println(e.getMessage());
+                break;
             }
-            catch (ExceptionNameTaken e){
-                System.out.println(e.getMessage());
-            }
+
         }
-        s.nextLine();
 
 
-//        UserMessage res;
-//        do {
-//            res = college.addLecturer(name, id, degree, fieldOfStudy, salary);
-//            if (res == UserMessage.ADD_LECTURER_FAILED) {
-//                System.out.println(res);
-//                name = s.nextLine();
-//            }
-//        } while (res == UserMessage.ADD_LECTURER_FAILED);
-//        System.out.println(res);
+
+
     }
 
     private static void AddLecturerToDepartment() {

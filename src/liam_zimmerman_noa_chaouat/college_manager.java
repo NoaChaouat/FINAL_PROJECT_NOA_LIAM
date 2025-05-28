@@ -1,6 +1,9 @@
 package liam_zimmerman_noa_chaouat;
 
 
+import static liam_zimmerman_noa_chaouat.UserMessage.*;
+import static liam_zimmerman_noa_chaouat.UserMessage.SALARY_CANT_BE_NEGATIVE;
+
 public class college_manager {
         private Lecturer[] lecturersArray = new Lecturer[0];
         private int numOfLecturers = 0;
@@ -9,16 +12,25 @@ public class college_manager {
         private Department[] departmentsArray = new Department[0];
         private int numOfDepartments = 0;
 
+
+
     // ADDING FUNCTIONS:
+
+
     public void addLecturer(String name, String id, String degree, String fieldOfStudy,double salary) throws ExceptionUserMessage {
 
         if(Util.isExist(lecturersArray,numOfLecturers,name)){
-            throw new ExceptionNameTaken("Lecturer");
+            throw new ExceptionNameTaken(ADD_LECTURER_FAILED);
+        }
+        if(!Util.isValidDegree(degree)){
+            throw new ExceptionsNotExist(DEGREE_ISNT_VALID);
+
+        }
+        if(salary<=0){
+            throw new ExceptionCollege(SALARY_CANT_BE_NEGATIVE);
         }
 
-        if(salary<=0){
-            throw new ExceptionCollege("Salary cant be negative");
-        }
+
 
         if (lecturersArray.length == numOfLecturers){
             lecturersArray = (Lecturer[]) Util.resizeArr(lecturersArray);

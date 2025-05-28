@@ -14,6 +14,7 @@ public class Util {
             if(equalsDegree(d,degree)){
                 return true;
             }
+
         }
         return false;
     }
