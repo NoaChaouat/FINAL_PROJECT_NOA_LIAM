@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Util {
     // BOOLEAN IS FUNCTIONS:
     public static boolean isValidChairman(Lecturer lecturer) {
-        return lecturer.getDegree().equals(Lecturer.Degree.DR) || (lecturer.getDegree().equals(Lecturer.Degree.PROFESSOR));
+        return lecturer instanceof Doctor;
     }
 
     public static boolean isValidDegree(String degree){

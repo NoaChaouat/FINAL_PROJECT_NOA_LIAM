@@ -5,6 +5,7 @@ public enum UserMessage {
     ADD_LECTURER_SUCCESS("Lecturer Added Successfully"),
     ADD_LECTURER_FAILED("Lecturer Name Taken. please Enter Different Name"),
     SALARY_CANT_BE_NEGATIVE("Salary can not be negative"),
+    COMPARE_FAILED_DR("lecturer Must Be DR Or Professor"),
 
     //הוספת ועדה#
     ADD_COMMITTEE_SUCCESS("Committee Added successfully "),

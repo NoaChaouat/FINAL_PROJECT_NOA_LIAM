@@ -1,14 +1,14 @@
 package liam_zimmerman_noa_chaouat;
 
-public class Doctor extends Lecturer{
+public class Doctor extends Lecturer implements Comparable<Doctor>{
 
     private String[] articles;
     private int numOfArticles;
 
-
     public Doctor(String name, String id, String lecturerDegree, String fieldOfStudy, double salary, String[] articles ) {
         super(name, id, lecturerDegree, fieldOfStudy, salary);
         this.articles = articles;
+        this.numOfArticles = articles.length;
     }
 
     public Doctor(Lecturer lecturer, String[] articles) {
@@ -27,5 +27,10 @@ public class Doctor extends Lecturer{
 
     public void setArticles(String[] articles) {
         this.articles = articles;
+    }
+
+    @Override
+    public int compareTo(Doctor o) {
+        return Integer.compare(this.numOfArticles,o.numOfArticles);
     }
 }

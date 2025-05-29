@@ -26,7 +26,8 @@ public class Main {
             "Show Average Salary of Lecturers in Specific Study Department",
             "Show all lecturer info",
             "Show all committee info",
-            "Add Lecturer To Department"
+            "Add Lecturer To Department",
+            "Compare between 2 Doctor/Professors"
     };
 
     private static void run() {
@@ -46,6 +47,7 @@ public class Main {
                 case 9 -> showLecturers();
                 case 10 -> showCommittees();
                 case 11 -> AddLecturerToDepartment();
+                case 12 -> CompareArticles();
 
 
             }
@@ -59,7 +61,6 @@ public class Main {
 
     private static void addLecturer() {
         s.nextLine();
-        boolean valid = false;
         System.out.println("Enter Lecturer Name");
         String name = s.nextLine();
         System.out.println("Enter ID");
@@ -82,7 +83,7 @@ public class Main {
         String[] articles = null;
         String grantorProfessora = null;
         if (degree.equals("DR") || degree.equals("PROFESSOR")){
-            System.out.println("Enter number of publications:");
+            System.out.println("Enter number of articles:");
             int numOfArticles = s.nextInt();
             s.nextLine();
              articles = new String[numOfArticles];
@@ -97,7 +98,7 @@ public class Main {
 
         }
 
-        while (!valid) {
+        while (true) {
             try {
                 if (degree.equals("PROFESSOR")) {
                     college.addLecturer(name, id, degree, fieldOfStudy, salary, articles, grantorProfessora);
@@ -106,7 +107,7 @@ public class Main {
                 } else {
                     college.addLecturer(name, id, degree, fieldOfStudy, salary);
                 }
-                valid = true;
+                break;
             } catch (ExceptionNameTaken e) {
                 System.out.println(e.getMessage());
                 name = s.nextLine();
@@ -129,9 +130,12 @@ public class Main {
         String lecturerName = s.nextLine();
         System.out.println("Enter Study Department Name");
         String committeeName = s.nextLine();
+        try {
+            college.addLecturerToDepartment(lecturerName,committeeName);
 
-        UserMessage res = college.addLecturerToDepartment(lecturerName,committeeName);
-        System.out.println(res);
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -141,10 +145,23 @@ public class Main {
         String committeeName = s.nextLine();
         System.out.println("Enter Chairman name");
         String chairMan = s.nextLine();
+        while (true) {
+            try {
+                college.addCommittee(committeeName, chairMan);
+                break;
+            }
+            catch (ExceptionNameTaken e) {
+                System.out.println(e.getMessage());
+                committeeName = s.nextLine();
+            }
 
-        UserMessage res = college.addCommittee(committeeName,chairMan);
-        System.out.println(res);
 
+            catch (ExceptionUserMessage e) {
+                System.out.println(e.getMessage());
+                break;
+            }
+
+        }
     }
 
     private static void addLecturerToCommittee() {
@@ -153,9 +170,12 @@ public class Main {
         String lecturerName = s.nextLine();
         System.out.println("Enter Committee Name");
         String committeeName = s.nextLine();
+        try {
+            college.addLecturerToCommittee(lecturerName,committeeName);
 
-        UserMessage res = college.addLecturerToCommittee(lecturerName,committeeName);
-        System.out.println(res);
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -165,17 +185,12 @@ public class Main {
         String departmentName = s.nextLine();
         System.out.println("Enter Num of Students in the department");
         int numOfStudents = s.nextInt();
+        try {
+            college.addStudyDepartment(departmentName,numOfStudents);
 
-        UserMessage res;
-        do {
-            res = college.addStudyDepartment(departmentName,numOfStudents);
-            if (res == UserMessage.ADD_DEPARTMENT_FAIL_NAME_EXISTS) {
-                System.out.println(res);
-                departmentName= s.nextLine();
-            }
-
-        } while (res == UserMessage.ADD_DEPARTMENT_FAIL_NAME_EXISTS);
-        System.out.println(res);
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
@@ -187,9 +202,12 @@ public class Main {
         String chairman = s.nextLine();
         System.out.println("Enter Committee Name");
         String committee = s.nextLine();
+        try {
+            college.updateCommitteeChair(chairman,committee);
 
-        UserMessage res = college.updateCommitteeChair(chairman,committee);
-        System.out.println(res);
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
@@ -200,9 +218,12 @@ public class Main {
         String lecturerName = s.nextLine();
         System.out.println("Enter Committee Name");
         String committeeName = s.nextLine();
+        try{
+            college.removeLecturerFromCommittee(lecturerName,committeeName);
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
 
-        UserMessage res = college.removeLecturerFromCommittee(lecturerName,committeeName);
-        System.out.println(res);
 
     }
 
@@ -237,6 +258,20 @@ public class Main {
         System.out.println("The Committees of The College:" + '\n');
         StringBuilder res = college.showCommittee();
         System.out.println(res);
+    }
+
+    private static void CompareArticles() {
+        s.nextLine();
+        System.out.println("Enter Doctor/Professor name");
+        String name1 = s.nextLine();
+        System.out.println("Enter Second Doctor/Professor name");
+        String name2 = s.nextLine();
+        try {
+            String res = college.CompareArticles(name1, name2);
+            System.out.println(res);
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        };
     }
 
     private static int showMenu() {
