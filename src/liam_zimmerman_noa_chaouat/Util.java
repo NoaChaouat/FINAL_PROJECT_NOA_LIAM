@@ -144,7 +144,19 @@ public class Util {
         return sb.toString();
     }
 
+    public static int sumOfArticles(Committee c1){
+        int counter = 0;
+        Lecturer[] arr = c1.getListOfLecturerCommittee();
+        for (int i = 0; i < c1.getNumOfLecturerCommittee(); i++) {
 
+            if(isValidChairman(arr[i])) {
+                Doctor d1 = (Doctor) arr[i];
+                counter += d1.getNumOfArticles();
+            }
+
+        }
+        return counter;
+    }
 
 
 }

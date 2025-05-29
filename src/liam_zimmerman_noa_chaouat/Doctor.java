@@ -3,7 +3,9 @@ package liam_zimmerman_noa_chaouat;
 public class Doctor extends Lecturer implements Comparable<Doctor>{
 
     private String[] articles;
-    private int numOfArticles;
+
+
+    private final int numOfArticles;
 
     public Doctor(String name, String id, String lecturerDegree, String fieldOfStudy, double salary, String[] articles ) {
         super(name, id, lecturerDegree, fieldOfStudy, salary);
@@ -19,11 +21,19 @@ public class Doctor extends Lecturer implements Comparable<Doctor>{
                 lecturer.getFieldOfStudy(),
                 lecturer.getSalary()
         );
-        this.articles = articles;}
+        this.articles = articles;
+        this.numOfArticles = articles.length;
+    }
+
 
     public String[] getArticles() {
         return articles;
     }
+
+    public int getNumOfArticles() {
+        return numOfArticles;
+    }
+
 
     public void setArticles(String[] articles) {
         this.articles = articles;
@@ -31,6 +41,6 @@ public class Doctor extends Lecturer implements Comparable<Doctor>{
 
     @Override
     public int compareTo(Doctor o) {
-        return Integer.compare(this.numOfArticles,o.numOfArticles);
+        return Integer.compare(this.numOfArticles,o.getNumOfArticles());
     }
 }

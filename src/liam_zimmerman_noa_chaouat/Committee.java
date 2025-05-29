@@ -2,8 +2,8 @@ package liam_zimmerman_noa_chaouat;
 
 import java.util.Arrays;
 
-public class Committee {
-    private final String nameCommittee;
+public class Committee implements Cloneable{
+    private String nameCommittee;
     private Lecturer[] listOfLecturerCommittee;
     private int numOfLecturerCommittee = 0;
     private Lecturer committeeChair;
@@ -49,6 +49,7 @@ public class Committee {
     }
 
 
+
     // TO STRING FUNCTION:
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -58,4 +59,20 @@ public class Committee {
         return sb.toString();
     }
 
+    @Override
+    public Committee clone()  {
+        try {
+            Committee cloned = (Committee) super.clone();
+            cloned.nameCommittee = "New " + this.nameCommittee;
+            cloned.listOfLecturerCommittee = new Lecturer[this.listOfLecturerCommittee.length];
+            for (int i = 0; i < this.listOfLecturerCommittee.length; i++) {
+                cloned.listOfLecturerCommittee[i] = this.listOfLecturerCommittee[i];
+            }
+            cloned.committeeChair = this.committeeChair;
+
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
+    }
 }

@@ -208,6 +208,7 @@ public class college_manager {
         return average;
     }
 
+
     // SHOWING FUNCTIONS:
     public StringBuilder showCommittee() {
         StringBuilder sb = new StringBuilder();
@@ -249,7 +250,6 @@ public class college_manager {
 
         Doctor d1 = (Doctor) doctor1;
         Doctor d2 = (Doctor) doctor2;
-
         int res = d1.compareTo(d2);
         switch (res) {
             case -1 -> {
@@ -262,6 +262,62 @@ public class college_manager {
                 return (doctor1.getClass().getSimpleName() + " " + doctor1.getLecturerName() + " has less articles than " + doctor2.getClass().getSimpleName() + " " + doctor2.getLecturerName());
             }
         }
-        return "";
+        throw new ExceptionCollege(WRONG_INPUT);
+    }
+
+    public String compareCommittee(String name1, String name2, int res) throws ExceptionUserMessage{
+        Committee committee1 = Util.findCommitteeByName(committeesArray, numOfCommittees, name1);
+        Committee committee2 = Util.findCommitteeByName(committeesArray, numOfCommittees, name2);
+
+        if (committee1 == null || committee2 == null) {
+            throw new ExceptionsNotExist(ADD_LECTURER_TO_COMMITTEE_FAIL_NO_SUCH_COMMITTEE);
+        }
+
+
+        if (res == 2){
+            CompareCommitteeByArticles comparator = new CompareCommitteeByArticles();
+            int result = comparator.compare(committee1, committee2);
+            switch (result) {
+                case -1 -> {
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has greater articles than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                }
+                case 0 -> {
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has equal num of articles as " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                }
+                case 1 -> {
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has less articles than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                }
+            }
+        }
+        else {
+            CompareCommitteeByMembers comparator = new CompareCommitteeByMembers();
+            int result = comparator.compare(committee1, committee2);
+            switch (result) {
+                case -1 -> {
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has greater num of members in committee than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                }
+                case 0 -> {
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has equal num of members in committee as " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                }
+                case 1 -> {
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has less members in committee than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                }
+            }
+
+        }
+        throw new ExceptionCollege(WRONG_INPUT);
+
+    }
+
+    public void DuplicateCommittee(String name) throws ExceptionUserMessage {
+        Committee committee1 = Util.findCommitteeByName(committeesArray, numOfCommittees, name);
+        if (committee1 == null) {
+            throw new ExceptionsNotExist(ADD_LECTURER_TO_COMMITTEE_FAIL_NO_SUCH_COMMITTEE);
+        }
+        Committee clonedCommittee = committee1.clone();
+        if (committeesArray.length == numOfCommittees) {
+            committeesArray = (Committee[]) Util.resizeArr(committeesArray);
+        }
+        committeesArray[numOfCommittees++] = clonedCommittee;
     }
 }

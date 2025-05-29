@@ -27,7 +27,9 @@ public class Main {
             "Show all lecturer info",
             "Show all committee info",
             "Add Lecturer To Department",
-            "Compare between 2 Doctor/Professors"
+            "Compare between 2 Doctor/Professors",
+            "Compare between Committees by members and articles ",
+            "Create Duplication of Committee"
     };
 
     private static void run() {
@@ -48,11 +50,14 @@ public class Main {
                 case 10 -> showCommittees();
                 case 11 -> AddLecturerToDepartment();
                 case 12 -> CompareArticles();
+                case 13 -> compareCommittee();
+                case 14 -> DuplicateCommittee();
 
 
             }
         } while (userChosen != 0);
     }
+
 
     private static void College_name() {
         System.out.println("Enter the name of your college:  ");
@@ -272,6 +277,45 @@ public class Main {
         } catch (ExceptionUserMessage e) {
             System.out.println(e.getMessage());
         };
+    }
+
+    private static void compareCommittee() {
+        s.nextLine();
+        System.out.println("Enter first committee ");
+        String name1= s.nextLine();
+        System.out.println("Enter second committee ");
+        String name2= s.nextLine();
+
+        int res;
+        do {
+                System.out.println("To compare between members press 1 for articles press 2 ");
+                res = s.nextInt();
+        } while (res != 1 && res != 2);
+
+        try {
+            String res2 = college.compareCommittee(name1,name2 ,res);
+            System.out.println(res2);
+
+
+        }
+        catch(ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void DuplicateCommittee() {
+        s.nextLine();
+        System.out.println("Enter Committee name to duplicate");
+        String name = s.nextLine();
+
+        try{
+            college.DuplicateCommittee(name);
+
+        } catch (ExceptionUserMessage e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 
     private static int showMenu() {
