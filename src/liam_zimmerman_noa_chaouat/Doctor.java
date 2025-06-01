@@ -1,5 +1,7 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.Arrays;
+
 public class Doctor extends Lecturer implements Comparable<Doctor>{
 
     private String[] articles;
@@ -42,5 +44,14 @@ public class Doctor extends Lecturer implements Comparable<Doctor>{
     @Override
     public int compareTo(Doctor o) {
         return Integer.compare(this.numOfArticles,o.getNumOfArticles());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("list Of Articles: ").append(Util.getArticelsAsString(articles)).append("\n");
+
+        return sb.toString();
     }
 }

@@ -159,4 +159,17 @@ public class Util {
     }
 
 
+    public static String getArticelsAsString(String[] articles) {
+        if (articles == null || articles.length == 0) {
+            return "None";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < articles.length; i++) {
+            sb.append(articles[i]);
+            if(i != articles.length-1){
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
+    }
 }

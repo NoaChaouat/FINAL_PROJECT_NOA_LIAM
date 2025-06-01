@@ -28,5 +28,11 @@ public class Professor extends Doctor {
         return grantorProfessora;
     }
 
-    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("The institution that awarded the professorship: " + grantorProfessora);
+        return sb.toString();
+    }
 }
