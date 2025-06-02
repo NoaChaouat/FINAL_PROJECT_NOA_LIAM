@@ -22,11 +22,7 @@ public class Professor extends Doctor {
         );
         this.grantorProfessora = grantorProfessora;
     }
-
-
-    public String getGrantorProfessora() {
-        return grantorProfessora;
-    }
+    //EQUALS ---- USE EQUALS OF SUPER (DOCTOR)
 
     @Override
     public String toString() {

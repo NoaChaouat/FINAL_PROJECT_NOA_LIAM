@@ -44,7 +44,7 @@ public class Department {
         this.listOfLecturerDepartment = listOfLecturerDepartment;
     }
 
-    // TO STRING FUNCTIONS:
+    // TO STRING FUNCTION:
     @Override
     public String toString() {
         return "Department{" +
@@ -52,6 +52,19 @@ public class Department {
                 ", num Of Students: " + numOfStudents +
                 ", list Of Lecturer In Department: " + Arrays.toString(listOfLecturerDepartment) +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Department other)) return false;
+
+        if (this.departmentName == null) {
+            return other.departmentName == null;
+        }
+
+        return this.departmentName.equals(other.departmentName);
     }
 
 

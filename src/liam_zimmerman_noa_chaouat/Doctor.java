@@ -46,6 +46,10 @@ public class Doctor extends Lecturer implements Comparable<Doctor>{
         return Integer.compare(this.numOfArticles,o.getNumOfArticles());
     }
 
+    //EQUALS ---- USE EQUALS OF SUPER(LECTURER)
+
+
+    //TO STRING
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

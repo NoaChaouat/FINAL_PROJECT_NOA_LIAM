@@ -75,4 +75,17 @@ public class Committee implements Cloneable{
             return null;
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+
+        if (!(obj instanceof Committee other)) return false;
+
+        if (this.nameCommittee == null) {
+            return other.nameCommittee == null;
+        }
+
+        return this.nameCommittee.equals(other.nameCommittee);
+    }
 }
