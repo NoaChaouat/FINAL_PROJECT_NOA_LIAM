@@ -253,13 +253,13 @@ public class college_manager {
         int res = d1.compareTo(d2);
         switch (res) {
             case -1 -> {
-                return (doctor1.getClass().getSimpleName() + " " + doctor1.getLecturerName() + " has greater articles than " + doctor2.getClass().getSimpleName() + " " + doctor2.getLecturerName());
+                return (doctor1.getClass().getSimpleName() + " " + doctor1.getLecturerName() + " has less articles than " + doctor2.getClass().getSimpleName() + " " + doctor2.getLecturerName());
             }
             case 0 -> {
                 return (doctor1.getClass().getSimpleName() + " " + doctor1.getLecturerName() + " has equal num of articles as " + doctor2.getClass().getSimpleName() + " " + doctor2.getLecturerName());
             }
             case 1 -> {
-                return (doctor1.getClass().getSimpleName() + " " + doctor1.getLecturerName() + " has less articles than " + doctor2.getClass().getSimpleName() + " " + doctor2.getLecturerName());
+                return (doctor1.getClass().getSimpleName() + " " + doctor1.getLecturerName() + " has grater articles than " + doctor2.getClass().getSimpleName() + " " + doctor2.getLecturerName());
             }
         }
         throw new ExceptionCollege(WRONG_INPUT);
@@ -279,13 +279,13 @@ public class college_manager {
             int result = comparator.compare(committee1, committee2);
             switch (result) {
                 case -1 -> {
-                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has greater articles than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has less articles than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
                 }
                 case 0 -> {
                     return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has equal num of articles as " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
                 }
                 case 1 -> {
-                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has less articles than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has greater articles than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
                 }
             }
         }
@@ -294,13 +294,13 @@ public class college_manager {
             int result = comparator.compare(committee1, committee2);
             switch (result) {
                 case -1 -> {
-                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has greater num of members in committee than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has less num of members in committee than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
                 }
                 case 0 -> {
                     return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has equal num of members in committee as " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
                 }
                 case 1 -> {
-                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has less members in committee than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
+                    return (committee1.getClass().getSimpleName() + " " + committee1.getNameCommittee() + " has greater members in committee than " + committee2.getClass().getSimpleName() + " " + committee2.getNameCommittee());
                 }
             }
 
