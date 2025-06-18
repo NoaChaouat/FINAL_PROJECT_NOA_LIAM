@@ -1,5 +1,6 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Util {
@@ -19,9 +20,9 @@ public class Util {
         return false;
     }
 
-    public static boolean isExist(Lecturer[] arr, int numOf, String name) {
-        for (int i = 0; i < numOf; i++) {
-            if (arr[i].getLecturerName().equals(name)) {
+    public static boolean isExistLecturer(ArrayList<Lecturer> arr, String name) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getLecturerName().equals(name)) {
                 return true;
             }
 
@@ -29,9 +30,9 @@ public class Util {
         return false;
     }
 
-    public static boolean isExist(Committee[] arr, int numOf, String name) {
-        for (int i = 0; i < numOf; i++) {
-            if (arr[i].getNameCommittee().equals(name)) {
+    public static boolean isExistCommittee(ArrayList<Committee> arr, String name) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getNameCommittee().equals(name)) {
                 return true;
             }
 
@@ -39,9 +40,9 @@ public class Util {
         return false;
     }
 
-    public static boolean isExist(Department[] arr, int numOf, String name) {
-        for (int i = 0; i < numOf; i++) {
-            if (arr[i].getDepartmentName().equals(name)) {
+    public static boolean isExistDepartment(ArrayList<Department> arr, String name) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getDepartmentName().equals(name)) {
                 return true;
             }
 
@@ -54,71 +55,46 @@ public class Util {
     }
 
     // FINDING FUNCTIONS:
-    public static Lecturer findLecturerByName(Lecturer[] arr, int numOf, String name) {
-        for (int i = 0; i < numOf; i++) {
-            if (arr[i].getLecturerName().equals(name)) {
-                return arr[i];
+    public static Lecturer findLecturerByName(ArrayList<Lecturer> arr, String name) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getLecturerName().equals(name)) {
+                return arr.get(i);
             }
         }
         return null;
     }
 
-    public static Committee findCommitteeByName(Committee[] committees, int numOfCommittees, String committeeName) {
-        for (int i = 0; i < numOfCommittees; i++) {
-            if (committees[i].getNameCommittee().equals(committeeName)) {
-                return committees[i];
+    public static Committee findCommitteeByName(ArrayList<Committee> committees, String committeeName) {
+        for (int i = 0; i < committees.size(); i++) {
+            if (committees.get(i).getNameCommittee().equals(committeeName)) {
+                return committees.get(i);
             }
         }
         return null;
     }
 
-    public static Department findDepartmentByName(Department[] departmentsArray, int numOfDepartments, String departmentName) {
-        for (int i = 0; i < numOfDepartments; i++) {
-            if (departmentsArray[i].getDepartmentName().equals(departmentName)) {
-                return departmentsArray[i];
+    public static Department findDepartmentByName(ArrayList<Department> departmentsArray, String departmentName) {
+        for (int i = 0; i < departmentsArray.size(); i++) {
+            if (departmentsArray.get(i).getDepartmentName().equals(departmentName)) {
+                return departmentsArray.get(i);
             }
         }
         return null;
     }
 
-    // ADD AND REMOVE FUNCTIONS:
-    public static void addCommitteeToLecturerCommittees(Lecturer lecturer, Committee committee) {
-        if (lecturer.getNumOfCommitteesOfLecturer() == lecturer.getCommitteesOfLecturer().length) {
-            lecturer.setCommitteesOfLecturer((Committee[]) Util.resizeArr(lecturer.getCommitteesOfLecturer()));
-        }
-
-        lecturer.getCommitteesOfLecturer()[lecturer.getNumOfCommitteesOfLecturer()] = committee;
-        lecturer.setNumOfCommitteesOfLecturer(lecturer.getNumOfCommitteesOfLecturer() + 1);
-    }
-
-    public static void removeFromArr(Object[] arr, int numOf, Object itemToRemove) {
-        for (int i = 0; i < numOf; i++) {
-            if (arr[i].equals(itemToRemove)) {
-                for (int j = i; j < numOf - 1; j++) {
-                    arr[j] = arr[j + 1];
-                }
-                arr[numOf - 1] = null;
-            }
-        }
-    }
-
-    public static Object[] resizeArr(Object[] arr) {
-
-        return Arrays.copyOf(arr, arr.length == 0 ? 2 : arr.length * 2);
-    }
 
     // GET FUNCTIONS
-    public static String getCommitteeNamesAsString(Committee[] committees, int numOfCommittees) {
-        if (committees == null || numOfCommittees == 0) {
+    public static String getCommitteeNamesAsString(ArrayList<Committee> committees) {
+        if (committees == null || committees.isEmpty()) {
             return "None";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numOfCommittees; i++) {
-            Committee committee = committees[i];
+        for (int i = 0; i < committees.size(); i++) {
+            Committee committee = committees.get(i);
             if (committee != null) {
                 sb.append(committee.getNameCommittee());
-                if (i < numOfCommittees - 1) {
+                if (i < committees.size() - 1) {
                     sb.append(", ");
                 }
             }
@@ -126,17 +102,17 @@ public class Util {
         return sb.toString();
     }
 
-    public static String getLecturerNamesAsString(Lecturer[] lecturers, int numOfLecturers) {
-        if (lecturers == null || numOfLecturers == 0) {
+    public static String getLecturerNamesAsString(ArrayList<Lecturer> lecturers) {
+        if (lecturers == null || lecturers.isEmpty()) {
             return "None";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < numOfLecturers; i++) {
-            Lecturer lecturer = lecturers[i];
+        for (int i = 0; i < lecturers.size(); i++) {
+            Lecturer lecturer = lecturers.get(i);
             if (lecturer != null) {
                 sb.append(lecturer.getLecturerName());
-                if (i < numOfLecturers - 1) {
+                if (i < lecturers.size() - 1) {
                     sb.append(", ");
                 }
             }
@@ -146,12 +122,12 @@ public class Util {
 
     public static int sumOfArticles(Committee c1){
         int counter = 0;
-        Lecturer[] arr = c1.getListOfLecturerCommittee();
-        for (int i = 0; i < c1.getNumOfLecturerCommittee(); i++) {
+        ArrayList<Lecturer> arr = c1.getListOfLecturerCommittee();
+        for (int i = 0; i < arr.size(); i++) {
 
-            if(isValidChairman(arr[i])) {
-                Doctor d1 = (Doctor) arr[i];
-                counter += d1.getNumOfArticles();
+            if(isValidChairman(arr.get(i))) {
+                Doctor d1 = (Doctor) arr.get(i);
+                counter += d1.getArticles().size();
             }
 
         }
@@ -159,14 +135,14 @@ public class Util {
     }
 
 
-    public static String getArticelsAsString(String[] articles) {
-        if (articles == null || articles.length == 0) {
+    public static String getArticelsAsString(ArrayList<String> articles) {
+        if (articles == null || articles.isEmpty()) {
             return "None";
         }
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < articles.length; i++) {
-            sb.append(articles[i]);
-            if(i != articles.length-1){
+        for (int i = 0; i < articles.size(); i++) {
+            sb.append(articles.get(i));
+            if(i != articles.size()-1){
                 sb.append(", ");
             }
         }

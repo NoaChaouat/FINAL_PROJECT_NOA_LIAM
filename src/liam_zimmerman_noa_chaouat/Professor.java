@@ -1,11 +1,13 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.ArrayList;
+
 public class Professor extends Doctor {
 
     private final String grantorProfessora;
 
 
-    public Professor(String name, String id, String lecturerDegree, String fieldOfStudy, double salary, String grantorProfessora, String[] articles) {
+    public Professor(String name, String id, String lecturerDegree, String fieldOfStudy, double salary, String grantorProfessora, ArrayList<String> articles) {
         super(name, id, lecturerDegree, fieldOfStudy, salary, articles);
         this.grantorProfessora =grantorProfessora;
         

@@ -1,9 +1,10 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.ArrayList;
+
 public class Committee implements Cloneable{
     private String nameCommittee;
-    private Lecturer[] listOfLecturerCommittee;
-    private int numOfLecturerCommittee = 0;
+    private ArrayList<Lecturer> listOfLecturerCommittee;
     private Lecturer committeeChair;
     private Lecturer.Degree degree;
 
@@ -12,22 +13,16 @@ public class Committee implements Cloneable{
         this.nameCommittee = nameCommittee;
         this.committeeChair = committeeChair;
         this.degree= Lecturer.Degree.valueOf(degreeOfCommittee);
-
-
-        this.listOfLecturerCommittee = new Lecturer[0];
+        this.listOfLecturerCommittee = new ArrayList<>();
     }
 
     // GET FUNCTIONS:
-    public Lecturer[] getListOfLecturerCommittee() {
+    public ArrayList<Lecturer> getListOfLecturerCommittee() {
         return listOfLecturerCommittee;
     }
 
     public Lecturer getCommitteeChair() {
         return committeeChair;
-    }
-
-    public int getNumOfLecturerCommittee() {
-        return numOfLecturerCommittee;
     }
 
     public String getNameCommittee() {
@@ -39,7 +34,7 @@ public class Committee implements Cloneable{
     }
 
     // SET FUNCTIONS:
-    public void setListOfLecturerCommittee(Lecturer[] listOfLecturerCommittee) {
+    public void setListOfLecturerCommittee(ArrayList<Lecturer> listOfLecturerCommittee) {
         this.listOfLecturerCommittee = listOfLecturerCommittee;
     }
 
@@ -49,9 +44,6 @@ public class Committee implements Cloneable{
         }
     }
 
-    public void setNumOfLecturerCommittee(int numOfLecturerCommittee) {
-        this.numOfLecturerCommittee = numOfLecturerCommittee;
-    }
 
 
 
@@ -61,7 +53,7 @@ public class Committee implements Cloneable{
         sb.append("committee Name: ").append(nameCommittee).append("\n");
         sb.append("committee Degree: ").append(degree).append("\n");
         sb.append("committee Chair: ").append(committeeChair != null ? committeeChair.getLecturerName() : "N/A").append("\n");
-        sb.append("list Of Lecturer In Committee: ").append(Util.getLecturerNamesAsString(listOfLecturerCommittee, numOfLecturerCommittee)).append("\n");
+        sb.append("list Of Lecturer In Committee: ").append(Util.getLecturerNamesAsString(listOfLecturerCommittee)).append("\n");
         return sb.toString();
     }
 
@@ -70,9 +62,9 @@ public class Committee implements Cloneable{
         try {
             Committee cloned = (Committee) super.clone();
             cloned.nameCommittee = "New " + this.nameCommittee;
-            cloned.listOfLecturerCommittee = new Lecturer[this.listOfLecturerCommittee.length];
-            for (int i = 0; i < this.listOfLecturerCommittee.length; i++) {
-                cloned.listOfLecturerCommittee[i] = this.listOfLecturerCommittee[i];
+            cloned.listOfLecturerCommittee = new ArrayList<>();
+            for (int i = 0; i < this.listOfLecturerCommittee.size(); i++) {
+                cloned.listOfLecturerCommittee.set(i, this.listOfLecturerCommittee.get(i));
             }
             cloned.committeeChair = this.committeeChair;
 

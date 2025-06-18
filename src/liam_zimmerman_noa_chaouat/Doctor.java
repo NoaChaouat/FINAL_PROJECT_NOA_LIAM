@@ -1,21 +1,18 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Doctor extends Lecturer implements Comparable<Doctor>{
 
-    private String[] articles;
+    private ArrayList<String> articles;
 
-
-    private final int numOfArticles;
-
-    public Doctor(String name, String id, String lecturerDegree, String fieldOfStudy, double salary, String[] articles ) {
+    public Doctor(String name, String id, String lecturerDegree, String fieldOfStudy, double salary, ArrayList<String> articles ) {
         super(name, id, lecturerDegree, fieldOfStudy, salary);
         this.articles = articles;
-        this.numOfArticles = articles.length;
     }
 
-    public Doctor(Lecturer lecturer, String[] articles) {
+    public Doctor(Lecturer lecturer, ArrayList<String> articles) {
         super(
                 lecturer.getLecturerName(),
                 lecturer.getId(),
@@ -24,26 +21,21 @@ public class Doctor extends Lecturer implements Comparable<Doctor>{
                 lecturer.getSalary()
         );
         this.articles = articles;
-        this.numOfArticles = articles.length;
     }
 
 
-    public String[] getArticles() {
+    public ArrayList<String> getArticles() {
         return articles;
     }
 
-    public int getNumOfArticles() {
-        return numOfArticles;
-    }
 
-
-    public void setArticles(String[] articles) {
+    public void setArticles(ArrayList<String> articles) {
         this.articles = articles;
     }
 
     @Override
     public int compareTo(Doctor o) {
-        return Integer.compare(this.numOfArticles,o.getNumOfArticles());
+        return Integer.compare(this.articles.size(),o.getArticles().size());
     }
 
     //EQUALS ---- USE EQUALS OF SUPER(LECTURER)

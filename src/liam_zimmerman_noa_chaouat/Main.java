@@ -1,5 +1,6 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -85,16 +86,16 @@ public class Main {
 
 
 // איסוף נתונים נוספים במקרה וזה דוקטור או פרופסור
-        String[] articles = null;
+        ArrayList<String> articles = null;
         String grantorProfessora = null;
         if (degree.equals("DR") || degree.equals("PROFESSOR")){
             System.out.println("Enter number of articles:");
             int numOfArticles = s.nextInt();
             s.nextLine();
-             articles = new String[numOfArticles];
+             articles = new ArrayList<>();
             for (int i = 0; i < numOfArticles; i++) {
                 System.out.println("Enter article" + (i + 1));
-                articles[i] = s.nextLine();
+                articles.add(s.nextLine());
             }
             if (degree.equals("PROFESSOR")){
                 System.out.println("Enter institution that awarded the professorship");

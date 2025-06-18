@@ -1,46 +1,39 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Department {
     private final String departmentName;
     private int numOfStudents;
-    private Lecturer[] listOfLecturerDepartment;
-    private int numOfLecturerDepartment = 0;
+    private ArrayList<Lecturer> listOfLecturerDepartment;
 
     public Department(String departmentName, int numOfStudents) {
         this.departmentName = departmentName;
         this.numOfStudents = numOfStudents;
-        this.listOfLecturerDepartment = new Lecturer[0];
+        this.listOfLecturerDepartment = new ArrayList<>();
     }
 
     // GET FUNCTIONS:
-    public int getNumOfLecturerDepartment() {
-        return numOfLecturerDepartment;
-    }
 
     public String getDepartmentName() {
         return departmentName;
     }
 
-    public Lecturer[] getListOfLecturerDepartment() {
+    public ArrayList<Lecturer> getListOfLecturerDepartment() {
         return listOfLecturerDepartment;
     }
 
     public double getAverageDepartments() {
         double average=0;
-        for (int i = 0; i < numOfLecturerDepartment; i++) {
-            average+=listOfLecturerDepartment[i].getSalary();
+        for (int i = 0; i < listOfLecturerDepartment.size(); i++) {
+            average+= listOfLecturerDepartment.get(i).getSalary();
         }
-        return average/numOfLecturerDepartment;
+        return average/listOfLecturerDepartment.size();
     }
 
     // SET FUNCTIONS:
-    public void setNumOfLecturerDepartment(int numOfLecturerDepartment) {
-        this.numOfLecturerDepartment = numOfLecturerDepartment;
-    }
-
-    public void setListOfLecturerDepartment(Lecturer[] listOfLecturerDepartment) {
+    public void setListOfLecturerDepartment(ArrayList<Lecturer> listOfLecturerDepartment) {
         this.listOfLecturerDepartment = listOfLecturerDepartment;
     }
 
@@ -50,7 +43,7 @@ public class Department {
         return "Department{" +
                 "department Name: '" + departmentName + '\'' +
                 ", num Of Students: " + numOfStudents +
-                ", list Of Lecturer In Department: " + Arrays.toString(listOfLecturerDepartment) +
+                ", list Of Lecturer In Department: " + listOfLecturerDepartment +
                 '}';
     }
 

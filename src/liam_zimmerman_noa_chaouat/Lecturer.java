@@ -1,6 +1,6 @@
 package liam_zimmerman_noa_chaouat;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Lecturer {
     private final String lecturerName;
@@ -23,9 +23,7 @@ public class Lecturer {
     private final String fieldOfStudy;
     private double salary;
     private Department departmentOfLecturer = null;
-    private Committee[] CommitteesOfLecturer;
-    private int numOfCommitteesOfLecturer;
-
+    private ArrayList<Committee> CommitteesOfLecturer;
     //  CONSTRUCTOR:
     public Lecturer(String name, String id, String lecturerDegree, String fieldOfStudy,double salary) {
 
@@ -34,8 +32,7 @@ public class Lecturer {
         this.degree= Degree.valueOf(lecturerDegree);
         this.fieldOfStudy = fieldOfStudy;
         this.salary = salary;
-        this.CommitteesOfLecturer = new Committee[1];
-
+        this.CommitteesOfLecturer = new ArrayList<>();
     }
 
     //  GET FUNCTIONS:
@@ -55,21 +52,13 @@ public class Lecturer {
         return degree;
     }
 
-    public Committee[] getCommitteesOfLecturer() {
+    public ArrayList<Committee> getCommitteesOfLecturer() {
         return CommitteesOfLecturer;
     }
 
-    public int getNumOfCommitteesOfLecturer() {
-        return numOfCommitteesOfLecturer;
-    }
-
     //  SET FUNCTION:
-    public void setCommitteesOfLecturer(Committee[] committeesOfLecturer) {
+    public void setCommitteesOfLecturer(ArrayList<Committee> committeesOfLecturer) {
         CommitteesOfLecturer = committeesOfLecturer;
-    }
-
-    public void setNumOfCommitteesOfLecturer(int numOfCommitteesOfLecturer) {
-        this.numOfCommitteesOfLecturer = numOfCommitteesOfLecturer;
     }
 
     public void setDepartmentOfLecturer(Department departmentOfLecturer) {
@@ -106,7 +95,7 @@ public class Lecturer {
         sb.append("field Of Study: ").append(fieldOfStudy).append("\n");
         sb.append("salary: ").append(salary).append("\n");
         sb.append("department Of Lecturer: ").append(departmentOfLecturer != null ? departmentOfLecturer.getDepartmentName() : "None").append("\n");
-        sb.append("committees: ").append(Util.getCommitteeNamesAsString(CommitteesOfLecturer, numOfCommitteesOfLecturer)).append("\n");
+        sb.append("committees: ").append(Util.getCommitteeNamesAsString(CommitteesOfLecturer)).append("\n");
         return sb.toString();
     }
 

@@ -37,7 +37,7 @@ public enum UserMessage {
     REMOVE_LECTURER_FROM_COMMITTEE_FAIL_NO_SUCH_LECTURER("Lecturer not found in the college."),
     REMOVE_LECTURER_FROM_COMMITTEE_FAIL_NO_SUCH_COMMITTEE("Committee does not exist."),
     REMOVE_LECTURER_FROM_COMMITTEE_SUCCESS("Member removed from committee successfully."),
-    REMOVE_LECTURER_FROM_COMMITTEE_FAIL_NO_SUCH_LECTURER_IN_COMMITTEE("Committee does not exist."),
+    REMOVE_LECTURER_FROM_COMMITTEE_FAIL_NO_SUCH_LECTURER_IN_COMMITTEE("Committee does not exist / You tried to remove the chairman."),
     REMOVE_LECTURER_CHAIRMAN_CANNOT_BE_REMOVED("Chairman Cannot Be Removed From Committee"),
 
 
