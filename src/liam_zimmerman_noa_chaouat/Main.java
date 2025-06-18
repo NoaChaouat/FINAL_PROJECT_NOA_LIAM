@@ -148,11 +148,13 @@ public class Main {
         s.nextLine();
         System.out.println("Enter Committee name");
         String committeeName = s.nextLine();
+        System.out.println("Enter Degree of The committee");
+        String degreeOfCommittee = s.nextLine().toUpperCase();
         System.out.println("Enter Chairman name");
         String chairMan = s.nextLine();
         while (true) {
             try {
-                college.addCommittee(committeeName, chairMan);
+                college.addCommittee(committeeName, chairMan,degreeOfCommittee);
                 break;
             }
             catch (ExceptionNameTaken e) {

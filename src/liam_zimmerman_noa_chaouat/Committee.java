@@ -1,17 +1,18 @@
 package liam_zimmerman_noa_chaouat;
 
-import java.util.Arrays;
-
 public class Committee implements Cloneable{
     private String nameCommittee;
     private Lecturer[] listOfLecturerCommittee;
     private int numOfLecturerCommittee = 0;
     private Lecturer committeeChair;
+    private Lecturer.Degree degree;
 
     // CONSTRUCTOR:
-    public Committee(String nameCommittee, Lecturer committeeChair) {
+    public Committee(String nameCommittee, Lecturer committeeChair, String degreeOfCommittee) {
         this.nameCommittee = nameCommittee;
         this.committeeChair = committeeChair;
+        this.degree= Lecturer.Degree.valueOf(degreeOfCommittee);
+
 
         this.listOfLecturerCommittee = new Lecturer[0];
     }
@@ -31,6 +32,10 @@ public class Committee implements Cloneable{
 
     public String getNameCommittee() {
         return nameCommittee;
+    }
+
+    public Lecturer.Degree getDegree() {
+        return degree;
     }
 
     // SET FUNCTIONS:
@@ -54,6 +59,7 @@ public class Committee implements Cloneable{
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("committee Name: ").append(nameCommittee).append("\n");
+        sb.append("committee Degree: ").append(degree).append("\n");
         sb.append("committee Chair: ").append(committeeChair != null ? committeeChair.getLecturerName() : "N/A").append("\n");
         sb.append("list Of Lecturer In Committee: ").append(Util.getLecturerNamesAsString(listOfLecturerCommittee, numOfLecturerCommittee)).append("\n");
         return sb.toString();

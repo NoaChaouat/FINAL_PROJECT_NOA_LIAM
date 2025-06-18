@@ -51,10 +51,13 @@ public class college_manager {
         return lecturer;
     }
 
-    public void addCommittee(String committeeName, String chairMan) throws ExceptionUserMessage {
+    public void addCommittee(String committeeName, String chairMan, String degreeOfCommittee) throws ExceptionUserMessage {
         Lecturer lecturerChair = Util.findLecturerByName(lecturersArray, numOfLecturers, chairMan);
         if (lecturerChair == null) {
             throw new ExceptionsNotExist(ADD_COMMITTEE_FAILED_CHAIRMAN_NOT_EXIST);
+        }
+        if (!Util.isValidDegree(degreeOfCommittee)) {
+            throw new ExceptionsNotExist(DEGREE_ISNT_VALID);
         }
 
         if (!Util.isValidChairman(lecturerChair)) { // בודק אם הוא מופע של דוקטור או פרופסור
@@ -64,7 +67,7 @@ public class college_manager {
             throw new ExceptionNameTaken(ADD_COMMITTEE_FAILED_EXIST);
         }
 
-        Committee committee = new Committee(committeeName, lecturerChair);
+        Committee committee = new Committee(committeeName, lecturerChair,degreeOfCommittee);
         if (committeesArray.length == numOfCommittees) {
             committeesArray = (Committee[]) Util.resizeArr(committeesArray);
         }
@@ -83,6 +86,9 @@ public class college_manager {
         }
         if (Util.isExist(committee.getListOfLecturerCommittee(), committee.getNumOfLecturerCommittee(), lecturerName) || committee.getCommitteeChair().equals(lecturer)) {
             throw new ExceptionAlreadyExist(ADD_LECTURER_TO_COMMITTEE_FAIL_ALREADY_IN_COMMITTEE);
+        }
+        if (!(lecturer.getDegree() == committee.getDegree())){
+            throw new ExceptionCollege(ADD_LECTURER_TO_COMMITTEE_FAIL_DEGREE_NOT_EQUAL);
         }
 
         if (committee.getListOfLecturerCommittee().length == committee.getNumOfLecturerCommittee()) {

@@ -19,9 +19,11 @@ public enum UserMessage {
     ADD_LECTURER_TO_COMMITTEE_FAIL_ALREADY_IN_COMMITTEE("Lecturer is already part of the committee."),
     ADD_LECTURER_TO_COMMITTEE_FAIL_NO_SUCH_LECTURER("Lecturer not found in the college."),
     ADD_LECTURER_TO_COMMITTEE_FAIL_NO_SUCH_COMMITTEE("Committee does not exist."),
+    ADD_LECTURER_TO_COMMITTEE_FAIL_DEGREE_NOT_EQUAL("The degree of the lecturer do not match with the committee"),
 
     // הוספת תואר למרצה
     DEGREE_ISNT_VALID("Degree do not exist."),
+
 
     //עדכון יושב ראש
     UPDATE_COMMITTEE_CHAIR_FAIL_NO_SUCH_LECTURER("Lecturer not found in the college."),
