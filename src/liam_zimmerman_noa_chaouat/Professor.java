@@ -1,5 +1,6 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Professor extends Doctor {

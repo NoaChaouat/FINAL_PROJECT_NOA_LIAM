@@ -1,15 +1,18 @@
 package liam_zimmerman_noa_chaouat;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static liam_zimmerman_noa_chaouat.UserMessage.*;
 
-public class college_manager {
+public class college_manager implements Serializable {
     private ArrayList<Lecturer> lecturersArray = new ArrayList<>();
     private ArrayList<Committee> committeesArray = new ArrayList<>();
     private ArrayList<Department> departmentsArray = new ArrayList<>();
+    private String collegeName;
+
 
     // ADDING FUNCTIONS:
     public void addLecturer(String name, String id, String degree, String fieldOfStudy, double salary) throws ExceptionUserMessage {
@@ -296,5 +299,13 @@ public class college_manager {
         }
         Committee clonedCommittee = committee1.clone();
         committeesArray.add(clonedCommittee);
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
     }
 }

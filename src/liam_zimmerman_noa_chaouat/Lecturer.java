@@ -1,8 +1,9 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Lecturer {
+public class Lecturer implements Serializable {
     private final String lecturerName;
 
     private final String id;

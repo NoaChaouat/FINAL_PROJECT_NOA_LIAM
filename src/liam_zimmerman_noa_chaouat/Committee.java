@@ -1,8 +1,9 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Committee implements Cloneable{
+public class Committee implements Cloneable, Serializable {
     private String nameCommittee;
     private ArrayList<Lecturer> listOfLecturerCommittee;
     private Lecturer committeeChair;

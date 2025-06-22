@@ -1,9 +1,10 @@
 package liam_zimmerman_noa_chaouat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Department {
+public class Department implements Serializable {
     private final String departmentName;
     private int numOfStudents;
     private ArrayList<Lecturer> listOfLecturerDepartment;

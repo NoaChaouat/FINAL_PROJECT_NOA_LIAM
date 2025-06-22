@@ -9,11 +9,30 @@ public class Main {
 
     public static void main(String[] args) {
 //        Liam Zimmerman Noa Chaouat
-        college = new college_manager();
-        College_name();
+        String filename = "college_data.dat";
+
+        college = StorageManager.loadManager(filename);
+        if (college != null) {
+            System.out.println("Loaded saved data from file.");
+            System.out.println("Collage Name: "+college.getCollegeName());
+        } else {
+            System.out.println("No saved file found — starting a new system.");
+            college = new college_manager();
+            College_name();
+        }
+
         run();
         s.close();
+
+        boolean saved = StorageManager.saveManager(college, filename);
+        if (saved) {
+            System.out.println("Data saved successfully to file.");
+        } else {
+            System.out.println("Error while saving data to file.");
+        }
+
     }
+
 
     private static final String[] MENU = {
             "Exit program",
@@ -62,7 +81,7 @@ public class Main {
 
     private static void College_name() {
         System.out.println("Enter the name of your college:  ");
-        String collegeName = s.nextLine();
+        college.setCollegeName(s.nextLine());
     }
 
     private static void addLecturer() {
@@ -124,10 +143,6 @@ public class Main {
             }
 
         }
-
-
-
-
     }
 
     private static void AddLecturerToDepartment() {
@@ -317,8 +332,6 @@ public class Main {
         } catch (ExceptionUserMessage e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     private static int showMenu() {
@@ -331,6 +344,8 @@ public class Main {
         return userChoice;
 
     }
+
+
 }
 
 
